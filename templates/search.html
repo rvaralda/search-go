@@ -1,0 +1,8 @@
+<h1>Search results for "{{ .Query }}":</h1>
+{{ range $p := .People }}
+    <div><p>{{ $p.Name }}</p></div>
+    <b>Films</b>
+    {{ range $film := $p.Films }}
+        <div><p>{{ $film }}</p></div>
+    {{ end }}
+{{ end }}

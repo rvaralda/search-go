@@ -1,7 +1,9 @@
-FROM golang:1.5.1
-ADD .  /app
+FROM golang:1.16
+
 WORKDIR /app
-RUN go get -d
-RUN go build -o es es.go
-CMD ["/app/es"]
+COPY .  /app
+
+RUN go build
+
+CMD ["/app/search-go"]
 EXPOSE 9000

@@ -56,5 +56,5 @@ func main() {
 	http.HandleFunc("/search/", makeHandler(searchHandler))
 	http.HandleFunc("/index", makeHandler(indexHandler))
 
-	log.Fatal(http.ListenAndServe("localhost:9000", nil))
+	log.Fatal(http.ListenAndServe(":9000", nil))
 }

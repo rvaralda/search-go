@@ -37,7 +37,7 @@ func index(es *elasticsearch.Client, id int, data string) {
 
 func sw_get() int {
 	es := es_conn()
-	peopleNumber := 83
+	peopleNumber := 10 // 83
 	ch := make(chan *HttpResponse)
 	responses := []*HttpResponse{}
 
@@ -64,9 +64,9 @@ func sw_get() int {
 	for {
 		select {
 		case r := <-ch:
-			log.Println("Done case: " + strconv.Itoa(r.id))
 			log.Printf("Indexing %s, %d\n", r.url, r.id)
 			index(es, r.id, r.content)
+			log.Println("Done index: " + strconv.Itoa(r.id))
 
 			responses = append(responses, r)
 			if len(responses) == peopleNumber {

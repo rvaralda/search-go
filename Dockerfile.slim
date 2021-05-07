@@ -1,12 +1,15 @@
-FROM golang:1.16 AS build
+FROM golang:alpine AS build
 
 WORKDIR /app
-COPY .  /app
+COPY *go*  /app/
 
 RUN go build
 
-FROM scratch AS bin
+FROM alpine
+
+WORKDIR /app
 COPY --from=build /app/search-go /app/
+COPY templates /app/templates
 
 CMD ["/app/search-go"]
 EXPOSE 9000
